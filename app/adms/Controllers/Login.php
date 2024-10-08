@@ -1,10 +1,10 @@
 <?php
 
-namespace Controller;
+namespace Adms\Controllers;
 
 class Login
 {
-    public function index()
+    public function index(): void
     {
         echo 'página de login<br>';
     }

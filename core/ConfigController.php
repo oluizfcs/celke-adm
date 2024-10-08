@@ -1,6 +1,6 @@
 <?php
 
-require './core/Config.php';
+namespace Core;
 
 class ConfigController extends Config
 {
@@ -9,6 +9,7 @@ class ConfigController extends Config
     private string $urlController;
     private string $urlMetodo;
     private string $urlParameter;
+    private string $classLoad;
 
     public function __construct()
     {
@@ -40,22 +41,21 @@ class ConfigController extends Config
                 $this->urlParameter = '';
             }
         } else {
-            $this->urlController = CONTROLLERERRO;
+            $this->urlController = CONTROLLER;
             $this->urlMetodo = METODO;
+            $this->urlParameter = '';
         }
 
-        echo 'Controller: ' . $this->urlController . '<br> Metodo: ' . $this->urlMetodo . '<br>';
-        $this->loadPage();
+        echo "Controller: {$this->urlController} <br>";
+        echo "Método: {$this->urlMetodo} <br>";
+        echo "Prâmetro: {$this->urlParameter} <hr> <br>";
     }
 
     public function loadPage()
     {
-        require './app/adms/Controllers/Login.php';
-        $login = new Controller\Login();
-        $login->index();
-
-        require './app/adms/Controllers/Users.php';
-        $users = new Controller\Users();
-        $users->index();
+        echo "Carregar página: {$this->urlController}<br>";
+        $this->classLoad = "\\Adms\\Controllers\\" . $this->urlController;
+        $classPage = new $this->classLoad();
+        $classPage->{$this->urlMetodo}();
     }
 }

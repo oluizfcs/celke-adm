@@ -2,10 +2,10 @@
 
 namespace Adms\Controllers;
 
-class Users
+class Erro
 {
     public function index(): void
     {
-        echo "listar usuários <br>";
+        echo "Página de Erro <br>";
     }
 }

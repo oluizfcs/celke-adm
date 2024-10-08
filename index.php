@@ -7,8 +7,9 @@
 </head>
 <body>
     <?php
-        require 'core/ConfigController.php';
-        $url = new ConfigController();
+        require './vendor/autoload.php';
+        $url = new Core\ConfigController();
+        $url->loadPage();
     ?>
 </body>
 </html>
