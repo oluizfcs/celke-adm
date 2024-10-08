@@ -1,0 +1,23 @@
+{
+    "description": "Projeto ADM Celke",
+    "authors": [
+        {
+            "name": "Cesar Szpak",
+            "email": "cesar@celke.com.br",
+            "role": "Professor"
+        },
+        {
+            "name": "Luiz Felipe de Castro Santana",
+            "email": "oluizfcs@gmail.com",
+            "role": "Desenvolvedor"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core",
+            "App\\": "app",
+            "Adms\\": "app/adms"
+        }
+    },
+    "require": {}
+}
