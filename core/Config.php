@@ -17,5 +17,7 @@ abstract class Config
         define('CONTROLLER', 'Login');
         define('CONTROLLERERRO', "Erro");
         define('METODO', 'index');
+
+        define('EMAILADM', 'oluizfcs@gmail.com');
     }
 }
