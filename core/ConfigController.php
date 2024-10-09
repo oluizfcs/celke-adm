@@ -2,24 +2,49 @@
 
 namespace Core;
 
+/**
+ * Classe responsável por tratar a URL e carregar as Controllers corretamente
+ */
 class ConfigController extends Config
 {
+    /** Recebe a url que foi feita a partir do .htaccess */
     private string $url;
+
+    /** Array que separa a controller do método e do parâmetro */
     private array $urlArray;
+
+    /** Nome da Controller */
     private string $urlController;
+
+    /** Nome do método */
     private string $urlMetodo;
+
+    /** Nome do Parâmetro */
     private string $urlParameter;
+
+    /** Classe a ser instanciada (Controller) */
     private string $classLoad;
+
+    /** Lista contendo os caracteres especiais e aqueles que os substituem */
     private array $format;
+
+    /** Contém o nome da controller pronto para ser instanciado (PascalCase) */
     private string $urlSlugController;
+
+    /** Contém o nome do método pronto para ser instanciado (camelCase) */
     private string $urlSlugMetodo;
 
+    /**
+     * Trata a URL
+     */
     public function __construct()
     {
         parent::configAdm();
 
+        // Caso o usuário esteja tentando acessar uma página que não seja a padrão
         if(!empty(filter_input(INPUT_GET, 'url', FILTER_DEFAULT))) {
             $this->url = filter_input(INPUT_GET, 'url', FILTER_DEFAULT);
+
             $this->clearUrl();
             $this->urlArray = explode('/', $this->url);
 
@@ -44,6 +69,7 @@ class ConfigController extends Config
                 $this->urlParameter = '';
             }
         } else {
+            // Padrão
             $this->urlController = $this->slugController(CONTROLLER);
             $this->urlMetodo = $this->slugMetodo(METODO);
             $this->urlParameter = '';
@@ -54,6 +80,11 @@ class ConfigController extends Config
         echo "Prâmetro: {$this->urlParameter} <hr> <br>";
     }
 
+    /**
+     * Remove anomalias da URL
+     *
+     * @return void
+     */
     private function clearUrl(): void
     {
         // Tira as tags (<a></a> <p></p>)
@@ -71,6 +102,12 @@ class ConfigController extends Config
         $this->url = strtr(mb_convert_encoding($this->url, "ISO-8859-1", "UTF-8"), mb_convert_encoding($this->format["a"], "ISO-8859-1", "UTF-8"), $this->format["b"]);
     }
 
+    /**
+     * Remove anomalias do nome da Controller
+     *
+     * @param string $slugController Nome da Controller
+     * @return string Nome da Controller tratado
+     */
     private function slugController(string $slugController): string
     {
         // Tudo em minúsculo
@@ -87,6 +124,12 @@ class ConfigController extends Config
         return $this->urlSlugController;
     }
 
+    /**
+     * Remove anomalias do nome do Método
+     *
+     * @param string $slugMetodo Nome do método
+     * @return string Nome do método tratado
+     */
     public function slugMetodo(string $slugMetodo): string
     {
         $slugMetodo = $this->slugController($slugMetodo);
@@ -99,7 +142,12 @@ class ConfigController extends Config
         return $this->urlSlugMetodo;
     }
 
-    public function loadPage()
+    /**
+     * Carrega a controller juntamente com o método.
+     *
+     * @return void
+     */
+    public function loadPage():void
     {
         echo "Carregar página: {$this->urlController}<br>";
         $this->classLoad = "\\Adms\\Controllers\\" . $this->urlController;
