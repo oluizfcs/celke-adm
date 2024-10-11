@@ -3,7 +3,7 @@
 namespace Core;
 
 /**
- * Classe responsável por tratar a URL e carregar as Controllers corretamente
+ * Classe responsável por tratar a URL
  */
 class ConfigController extends Config
 {
@@ -75,9 +75,9 @@ class ConfigController extends Config
             $this->urlParameter = '';
         }
 
-        echo "Controller: {$this->urlController} <br>";
-        echo "Método: {$this->urlMetodo} <br>";
-        echo "Prâmetro: {$this->urlParameter} <hr> <br>";
+        // echo "Controller: {$this->urlController} <br>";
+        // echo "Método: {$this->urlMetodo} <br>";
+        // echo "Prâmetro: {$this->urlParameter} <hr> <br>";
     }
 
     /**
@@ -143,15 +143,13 @@ class ConfigController extends Config
     }
 
     /**
-     * Carrega a controller juntamente com o método.
+     * Instancia a classe responsável por carregar as controllers e seus métodos
      *
      * @return void
      */
     public function loadPage():void
     {
-        echo "Carregar página: {$this->urlController}<br>";
-        $this->classLoad = "\\Adms\\Controllers\\" . $this->urlController;
-        $classPage = new $this->classLoad();
-        $classPage->{$this->urlMetodo}();
+        $loadPgAdm = new \Core\CarregarPgAdm();
+        $loadPgAdm->loadPage($this->slugController($this->urlController), $this->slugMetodo($this->urlMetodo), $this->urlParameter);
     }
 }
