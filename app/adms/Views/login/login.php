@@ -9,6 +9,9 @@ var_dump($this->data);
 //     $this->data['form']['password'] = '';
 // }
 
+// Criptografar senhas
+// echo password_hash("123", PASSWORD_DEFAULT);
+
 ?>
 
 <h1>Área Restrita</h1>

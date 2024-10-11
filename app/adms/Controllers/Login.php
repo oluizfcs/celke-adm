@@ -23,6 +23,11 @@ class Login
 
         $this->data['form'] = $this->dataForm;
 
+        if ($this->data['form'] != null) {
+            $valLogin = new \Adms\Models\AdmsLogin();
+            $valLogin->login($this->dataForm);
+        }
+
         $loadView = new \Core\ConfigView('adms/Views/login/login', $this->data);
         $loadView->loadView();
     }
