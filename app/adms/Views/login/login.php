@@ -1,20 +1,11 @@
-<?php
-
-echo 'View - login';
-var_dump($this->data);
-
-# Decidi utilizar o operador null coalescing para corrigir este erro
-// if ($this->data['form'] == null) {
-//     $this->data['form']['user'] = '';
-//     $this->data['form']['password'] = '';
-// }
-
-// Criptografar senhas
-// echo password_hash("123", PASSWORD_DEFAULT);
-
-?>
-
 <h1>Área Restrita</h1>
+
+<?php
+    if(isset($_SESSION['msg'])) {
+        echo $_SESSION['msg'];
+        unset($_SESSION['msg']);
+    }
+?>
 
 <form method='POST' action=''>
     <label for='user'>Usuário:</label>
