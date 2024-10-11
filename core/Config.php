@@ -18,6 +18,12 @@ abstract class Config
         define('CONTROLLERERRO', "Erro");
         define('METODO', 'index');
 
+        define('HOST', 'localhost');
+        define('USER', 'root');
+        define('PASS', '');
+        define('DBNAME', 'celke_adm');
+        define('PORT', 3306);
+
         define('EMAILADM', 'oluizfcs@gmail.com');
     }
 }

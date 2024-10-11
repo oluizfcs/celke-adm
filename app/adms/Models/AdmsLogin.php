@@ -2,13 +2,17 @@
 
 namespace Adms\Models;
 
-class AdmsLogin
+class AdmsLogin extends helper\AdmsConn
 {
+    /** Recebe os dados do formulário */
     private array|null $data;
+    /** Recebe o PDO */
+    private object $conn;
 
     public function login(array $data = null)
     {
         $this->data = $data;
-        var_dump($this->data);
+
+        $this->conn = parent::connectDb();
     }
 }
