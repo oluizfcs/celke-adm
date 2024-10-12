@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use DateTimeZone;
+
 abstract class Config
 {
     /**
@@ -23,6 +25,8 @@ abstract class Config
         define('PASS', '');
         define('DBNAME', 'celke_adm');
         define('PORT', 3306);
+
+        define('TIMEZONE', new DateTimeZone('America/Sao_Paulo'));
 
         define('EMAILADM', 'oluizfcs@gmail.com');
     }

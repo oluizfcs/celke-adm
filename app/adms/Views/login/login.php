@@ -16,3 +16,5 @@
     <br><br>
     <input type='submit' name='SendLogin' value='Acessar'>
 </form>
+
+<p><a href='<?= URLADM . '/' . 'new-user' ?>'>Clique aqui</a> para cadastrar</p>
