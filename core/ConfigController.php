@@ -150,6 +150,6 @@ class ConfigController extends Config
     public function loadPage():void
     {
         $loadPgAdm = new \Core\CarregarPgAdm();
-        $loadPgAdm->loadPage($this->slugController($this->urlController), $this->slugMetodo($this->urlMetodo), $this->urlParameter);
+        $loadPgAdm->loadPage($this->urlController, $this->urlMetodo, $this->urlParameter);
     }
 }
