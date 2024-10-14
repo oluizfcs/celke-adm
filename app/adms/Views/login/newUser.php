@@ -17,6 +17,9 @@
     <label for='password'>Senha:</label>
     <input type='password' name='password' placeholder='Insira sua senha' value='<?= $this->data['form']['password'] ?? '' ?>'>
     <br><br>
+    <label for='confirm_password'>Confirmar senha:</label>
+    <input type='password' name='confirm_password' placeholder='Confirme sua senha' value='<?= $this->data['form']['confirm_password'] ?? '' ?>'>
+    <br><br>
     <input type='submit' name='SendNewUser' value='Cadastrar'>
 </form>
 

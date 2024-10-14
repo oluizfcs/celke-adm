@@ -13,13 +13,15 @@ class NewUser
     public function index(): void
     {
         $this->dataForm = filter_input_array(INPUT_POST, $_POST, FILTER_DEFAULT);
-        
         $this->data['form'] = $this->dataForm;
 
         if ($this->data['form'] != null) {
-            $newUser = new \Adms\Models\AdmsNewUser();
-            $newUser->create($this->data['form']);
-            var_dump($this->data['form']);
+            if ($this->dataForm['password'] == $this->dataForm['confirm_password']) {
+                $newUser = new \Adms\Models\AdmsNewUser();
+                $newUser->create($this->data['form']);
+            } else {
+                $_SESSION['msg'] = "<p style='color: red'>As senhas não coincidem.</p>";
+            }
         }
 
         $loadView = new \Core\ConfigView('adms/Views/login/newUser', $this->data);
